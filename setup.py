@@ -1,9 +1,10 @@
 from setuptools import setup, find_packages
 
 setup(
-    name='casino_libs',
+    name='casino_lib',
     version='0.1',
     description='lib',
     author='x0r0x',
+    py_modules=['petflip'],
     packages=find_packages(),
 )

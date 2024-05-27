@@ -2,9 +2,6 @@ import os
 from enum import Enum
 from pathlib import Path
 
-ROOT_ABS_PATH = Path(os.path.abspath(os.path.dirname(__file__))).parent
-ROOT_URL = 'https://app.petflip.xyz/'
-
 
 class ContentId(Enum):
     IMG_HOME = 'imgs/scr_home2.png'
@@ -19,12 +16,21 @@ class ContentId(Enum):
 
 class StaticContent:
 
-    def __init__(self):
+    def __init__(
+        self,
+        root_fp,
+        root_url,
+        load_data=True
+    ):
+        self._root_fp = root_fp
+        self._root_url = root_url
+
         self._content_bytes = {}
 
-        for e in ContentId:
-            with open(self.get_fp(e), 'rb') as f:
-                self._content_bytes[e] = f.read()
+        if load_data:
+            for e in ContentId:
+                with open(self.get_fp(e), 'rb') as f:
+                    self._content_bytes[e] = f.read()
 
     @property
     def data(self):
@@ -33,13 +39,11 @@ class StaticContent:
     def get_bytes(self, cid: ContentId):
         return self._content_bytes[cid]
 
-    @staticmethod
-    def get_fp(cid: ContentId):
-        return f'{ROOT_ABS_PATH}/{cid.value}'
+    def get_fp(self, cid: ContentId):
+        return f'{self._root_fp}/{cid.value}'
 
-    @staticmethod
-    def get_url(cid: ContentId):
-        return f'{ROOT_URL}{cid.value}'
+    def get_url(self, cid: ContentId):
+        return f'{self._root_url}{cid.value}'
 
     @staticmethod
     def get_uri(cid: ContentId):
