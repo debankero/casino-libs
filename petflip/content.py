@@ -1,6 +1,9 @@
+import os
 from enum import Enum
+from pathlib import Path
 
-from .config import ROOT_ABS_PATH, ROOT_URL
+ROOT_ABS_PATH = Path(os.path.abspath(os.path.dirname(__file__))).parent
+ROOT_URL = 'https://app.petflip.xyz/'
 
 
 class ContentId(Enum):
