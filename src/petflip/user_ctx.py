@@ -11,10 +11,10 @@ class UserState:
         payout_amount: float = 0,
         last_msg: Union[Message, None] = None
     ):
-        self._last_pressed_button: Union[None, str] = last_pressed_button
         self._last_scr: Union[None, str] = last_scr_id
+        self._last_pressed_button: Union[None, str] = last_pressed_button
         self._payout_amount: float = payout_amount
-        self._last_msg: Union[None, Message] = last_msg
+        self._last_msg: Union[None, Message, int] = last_msg
 
     @property
     def last_scr(self):
@@ -43,6 +43,19 @@ class UserState:
 
     def set_last_msg(self, msg: Message):
         self._last_msg = msg
+
+    def to_json(self) -> dict:
+        return {
+            'last_scr': self._last_scr,
+            'last_pressed_button': self._last_pressed_button,
+            'payout_amount': self._payout_amount,
+            'last_msg': self.last_msg
+        }
+
+    @staticmethod
+    def from_json(o: dict):
+        return UserState(o['last_scr'], o['last_pressed_button'], o['payout_amount'],
+                         o['last_msg'])
 
 
 class UserContext:
@@ -98,3 +111,6 @@ class UserContext:
             return self._users[telegram_id].last_msg
         else:
             return None
+
+    def get_user_state(self, telegram_id: int):
+        return self._users.get(telegram_id, None)
