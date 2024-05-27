@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='casino_lib',
-    version='0.1',
+    version='0.2',
     description='lib',
     author='x0r0x',
     py_modules=['petflip'],

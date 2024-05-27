@@ -36,14 +36,14 @@ class StaticContent:
     def data(self):
         return self._content_bytes
 
-    def get_bytes(self, cid: ContentId):
-        return self._content_bytes[cid]
-
     def get_fp(self, cid: ContentId):
         return f'{self._root_fp}/{cid.value}'
 
     def get_url(self, cid: ContentId):
         return f'{self._root_url}{cid.value}'
+
+    def get_bytes(self, cid: ContentId):
+        return self._content_bytes[cid]
 
     @staticmethod
     def get_uri(cid: ContentId):
