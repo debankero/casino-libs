@@ -4,14 +4,14 @@ from pathlib import Path
 
 
 class ContentId(Enum):
-    IMG_HOME = 'imgs/scr_home2.png'
-    IMG_GAME = 'imgs/scr_game2.png'
-    IMG_FLIPPED = 'imgs/scr_flipped2.png'
-    IMG_CAT_WIN = 'imgs/cat_win2.gif'
-    IMG_CAT_LOST = 'imgs/cat_lost2.gif'
-    IMG_DOG_WIN = 'imgs/dog_win2.gif'
-    IMG_DOG_LOST = 'imgs/dog_lost2.gif'
-    HTML_GAME_STATS = 'imgs/game_stats.html'
+    IMG_HOME = 'imgs/scr_home3.png'
+    IMG_GAME = 'imgs/scr_game3.png'
+    IMG_FLIPPED = 'imgs/scr_flipped3.png'
+    IMG_CAT_WIN = 'imgs/cat_win3.gif'
+    IMG_CAT_LOST = 'imgs/cat_lost3.gif'
+    IMG_DOG_WIN = 'imgs/dog_win3.gif'
+    IMG_DOG_LOST = 'imgs/dog_lost3.gif'
+    HTML_GAME_STATS = 'imgs/game_stats3.html'
 
 
 class StaticContent:
