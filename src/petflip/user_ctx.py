@@ -49,13 +49,15 @@ class UserState:
             'last_scr': self._last_scr,
             'last_pressed_button': self._last_pressed_button,
             'payout_amount': self._payout_amount,
-            'last_msg': self.last_msg
         }
 
     @staticmethod
     def from_json(o: dict):
-        return UserState(o['last_scr'], o['last_pressed_button'], o['payout_amount'],
-                         o['last_msg'])
+        return UserState(
+            o['last_scr'],
+            o['last_pressed_button'],
+            o['payout_amount'],
+        )
 
 
 class UserContext:
@@ -113,4 +115,4 @@ class UserContext:
             return None
 
     def get_user_state(self, telegram_id: int):
-        return self._users.get(telegram_id, None)
+        return self._users.get(telegram_id, UserState())
