@@ -1,11 +1,15 @@
-from typing import Union
-
 from telegram import InlineKeyboardButton
 
 
 class ScrSetup:
     def __init__(
-        self, id_: str, img: str, msg: str, kb, is_anim: bool = False, render_mode: str = 'HTML'
+        self, id_: str,
+        img: str,
+        msg: str,
+        kb,
+        is_anim: bool = False,
+        render_mode: str = 'HTML',
+        text_delay: float = 0
     ):
         self.id = id_
         self.img = img
@@ -13,11 +17,12 @@ class ScrSetup:
         self.kb: list[list[InlineKeyboardButton]] = kb
         self.is_anim = is_anim
         self.render_mode = render_mode
+        self.text_delay = text_delay
 
     def to_json(self):
-        kb: Union[list[list[InlineKeyboardButton]], None] = None
+        kb = None
         if self.kb:
-            kb: list[list[InlineKeyboardButton]] = []
+            kb = []
             for row in self.kb:
                 new_row = []
                 kb.append(new_row)
@@ -31,6 +36,7 @@ class ScrSetup:
             'kb': kb,
             'is_anim': self.is_anim,
             'render_mode': self.render_mode,
+            'text_delay': self.text_delay
         }
 
     @staticmethod
@@ -46,5 +52,5 @@ class ScrSetup:
                     new_row.append(InlineKeyboardButton(button[0], callback_data=button[1]))
 
         return ScrSetup(
-            o['id'], o['img'], o['msg'], new_kb, o['is_anim'], o['render_mode']
+            o['id'], o['img'], o['msg'], new_kb, o['is_anim'], o['render_mode'], o['text_delay']
         )
